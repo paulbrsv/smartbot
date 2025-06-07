@@ -1,0 +1,75 @@
+# Модели
+models:
+  default_provider: "ollama"  # ollama, openai, anthropic, google
+  ollama:
+    provider: "ollama"
+    model_name: "phi3:3.8b"
+    base_url: "http://localhost:11434"
+    temperature: 0.7
+    top_p: 0.95
+    max_tokens: 2000
+  openai:
+    provider: "openai"
+    model_name: "gpt-4"
+    api_key: "${OPENAI_API_KEY}"
+    temperature: 0.7
+    top_p: 0.95
+    max_tokens: 2000
+  anthropic:
+    provider: "anthropic"
+    model_name: "claude-3-sonnet-20240229"
+    api_key: "${ANTHROPIC_API_KEY}"
+    temperature: 0.7
+    top_p: 0.95
+    max_tokens: 2000
+  google:
+    provider: "google"
+    model_name: "gemini-pro"
+    api_key: "${GOOGLE_API_KEY}"
+    temperature: 0.7
+    top_p: 0.95
+    max_tokens: 2000
+
+# Векторная БД
+vector_store:
+  type: "chromadb"  # chromadb, qdrant
+  path: "./data/vector_store"
+  collection_name: "documents"
+  embedding_model: "all-MiniLM-L6-v2"
+  embedding_dimension: 384
+  distance_metric: "cosine"
+
+# База данных
+database:
+  type: "sqlite"  # sqlite, postgresql
+  path: "./data/app.db"
+  host: null
+  port: null
+  username: null
+  password: null
+  database: null
+
+# Обработка файлов
+processing:
+  max_file_size_mb: 500
+  chunk_size: 1000
+  chunk_overlap: 200
+  supported_extensions: [".txt", ".pdf", ".docx", ".doc", ".json", ".xml", ".csv", ".xlsx", ".html", ".md", ".rtf", ".jpg", ".png", ".tiff", ".zip", ".rar"]
+
+# OCR
+ocr:
+  enabled: true
+  language: "rus+eng"
+  dpi: 300
+
+# Переводчик
+translation:
+  enabled: false
+  provider: "google"  # google, deepl, local
+  target_language: "ru"
+
+# UI
+interface:
+  theme: "dark"
+  language: "ru"
+  max_history: 100
